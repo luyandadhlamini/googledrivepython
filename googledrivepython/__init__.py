@@ -1,1 +1,2 @@
-from googledrivewrapper import GoogleDrive
+#from googledrivewrapper import GoogleDrive
+import googledrivewrapper

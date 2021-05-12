@@ -3,4 +3,4 @@
 # Ignore twine's distribution folder.
 dist/
 # temporarity ignore __init__.py
-__init__.py
+#__init__.py
