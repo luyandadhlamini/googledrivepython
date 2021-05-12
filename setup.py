@@ -3,13 +3,13 @@ from distutils.core import setup
 setup(
   name = 'googledrivepython',         
   packages = ['googledrivepython'],   
-  version = '0.1.5',      
+  version = '0.1.6',      
   license='MIT',        
   description = 'A python Google Drive API v3 wrapper',   
   author = 'Luyanda Dhlamini',                   
   author_email = 'luyanda.dhlamini@gmail.com',  
   url = 'https://github.com/luyandadhlamini',   
-  download_url = 'https://github.com/luyandadhlamini/googledrivepython/archive/refs/tags/v0.1.5.tar.gz', 
+  download_url = 'https://github.com/luyandadhlamini/googledrivepython/archive/refs/tags/v0.1.6.tar.gz', 
   keywords = ['Python', 'Google Drive', 'drive', 'API', 'wrapper' ],   
   install_requires=[            
           'oauth2-client',
