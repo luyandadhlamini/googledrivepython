@@ -3,7 +3,7 @@ from distutils.core import setup
 setup(
   name = 'googledrivepython',         
   packages = ['googledrivepython'],   
-  version = '0.1',      
+  version = '0.1.2',      
   license='MIT',        
   description = 'A python Google Drive API v3 wrapper',   
   author = 'Luyanda Dhlamini',                   
