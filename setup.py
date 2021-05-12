@@ -1,10 +1,4 @@
 from distutils.core import setup
-
-# read the contents of your README file
-from os import path
-this_directory = path.abspath(path.dirname(__file__))
-with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
-    long_description = f.read()    
     
 setup(
   name = 'googledrivepython',         
@@ -15,7 +9,7 @@ setup(
   author = 'Luyanda Dhlamini',                   
   author_email = 'luyanda.dhlamini@gmail.com',  
   url = 'https://github.com/luyandadhlamini',   
-  download_url = 'https://github.com/luyandadhlamini/googledrivepython/archive/refs/tags/v0.1.3.tar.gz', 
+  download_url = 'https://github.com/luyandadhlamini/googledrivepython/archive/refs/tags/v0.1.4.tar.gz', 
   keywords = ['Python', 'Google Drive', 'drive', 'API', 'wrapper' ],   
   install_requires=[            
           'oauth2-client',
@@ -34,6 +28,6 @@ setup(
     'Programming Language :: Python :: 3.9',
   ],
     
-    long_description=long_description,
+    long_description='A python Google Drive API v3 wrapper',
     long_description_content_type='text/markdown'
 )
