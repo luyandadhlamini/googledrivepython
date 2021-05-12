@@ -15,7 +15,7 @@ setup(
   author = 'Luyanda Dhlamini',                   
   author_email = 'luyanda.dhlamini@gmail.com',  
   url = 'https://github.com/luyandadhlamini',   
-  download_url = 'https://github.com/luyandadhlamini/googledrivepython/archive/refs/tags/v0.1.2.tar.gz', 
+  download_url = 'https://github.com/luyandadhlamini/googledrivepython/archive/refs/tags/v0.1.3.tar.gz', 
   keywords = ['Python', 'Google Drive', 'drive', 'API', 'wrapper' ],   
   install_requires=[            
           'oauth2-client',
