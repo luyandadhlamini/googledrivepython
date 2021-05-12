@@ -1,0 +1,4 @@
+# Ignore MacOs auto generated files
+.DS_Store
+# Ignore twine's distribution folder.
+dist/
