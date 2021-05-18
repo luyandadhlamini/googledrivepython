@@ -3,6 +3,7 @@ version = '0.2.1'
 setup(
   name = 'googledrivepython',         
   packages = ['googledrivepython'],   
+  long_description_content_type = 'text/markdown',
   version = version,      
   license='MIT',        
   description = 'A python Google Drive API v3 wrapper',   
@@ -26,7 +27,5 @@ setup(
     'Programming Language :: Python :: 3.8',
     'Programming Language :: Python :: 3.9',
   ],
-    
     long_description = '# googledrivepython\nA python Google Drive API v3 wrapper that enables:\n* **Uploading** of files to Google Drive\n* **Listing** of all files & folders available to a service account.\n* **Sharing** of files with a list of email addresses',
-long_description_content_type = 'text/markdown',
 )
