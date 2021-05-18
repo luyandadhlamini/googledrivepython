@@ -1,9 +1,10 @@
 from distutils.core import setup
-version = '0.2.3'
+version = '0.2.4'
 setup(
   name = 'googledrivepython',         
   packages = ['googledrivepython'],   
-  version = version,      
+  version = version,    
+  long_description_content_type = 'text/markdown',
   license='MIT',        
   description = 'A python Google Drive API v3 wrapper',   
   author = 'Luyanda Dhlamini',                   
@@ -27,9 +28,12 @@ setup(
     'Programming Language :: Python :: 3.9',
   ],
     long_description = """# googledrivepython
-    A python Google Drive API v3 wrapper that enables:
-    * Uploading of files to Google Drive
-    * Listing of all files & folders available to a service account.
-    * Sharing of files with a list of email addresses""",
-    long_description_content_type = 'text/markdown',
+A python Google Drive API v3 wrapper that enables:
+    
+* Uploading of files to Google Drive
+
+* Listing of all files & folders available to a service account.
+
+* Sharing of files with a list of email addresses""",
+    
 )
