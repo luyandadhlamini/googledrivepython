@@ -27,7 +27,6 @@ setup(
     'Programming Language :: Python :: 3.9',
   ],
     
-    long_description_content_type = 'text/markdown',
     long_description = """# googledrivepython
 A python Google Drive API v3 wrapper that enables:
 * **Uploading** of files to Google Drive
@@ -125,4 +124,5 @@ A python Google Drive API v3 wrapper that enables:
 
 
 </details>""",
+long_description_content_type = 'text/markdown',
 )
