@@ -1,6 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
 # Aim: Implement functions that allow user to work with google drive.
 
 from googleapiclient.discovery import build
@@ -8,14 +5,13 @@ from oauth2client.service_account import ServiceAccountCredentials
 from googleapiclient.http import MediaFileUpload, MediaIoBaseDownload
 from mimetypes import MimeTypes
 
-from datetime import datetime
-import sys, os, math
+import os
 import pandas as pd
 
 class GoogleDrive(object):
     """
     Class allows for programmatic:
-        - Uploading of files to Google Drive
+        - Uploading of files to a Google Drive
         - Listing of all files & folders available to a service account.
         - Sharing of files with a list of email addresses.
         
@@ -25,8 +21,8 @@ class GoogleDrive(object):
         https://developers.google.com/drive/api/v3/about-sdk
     """
     def __init__(self):
-        # Recommended: Use the 'create_credentials' function below to overwrite the credentials below.
-        # This helps avoid having to pass the credentials parameter into each of the subsequent functions.
+        # Recommended: Use the 'create_credentials' function below to overwrite the credentials variables in this __init__ function.
+        # This helps avoid having to manually pass the credentials parameter into each of the functions below.
         self.credentials = None
         
     def create_credentials(self, service_account_json_filename):
@@ -38,14 +34,18 @@ class GoogleDrive(object):
             https://support.google.com/a/answer/7378726?hl=en
 
         Parameters:
-            service_account_json_filename - a string with the full path & name to a .json object that authenticates a 
-            service account.
-            E.g: '/Users/luyanda.dhlamini/Projects/client_secrets.json'
+        ----------
+            service_account_json_filename - str
+                A string with the full path & name to a .json object that authenticates a service account.
+                E.g: '/Users/luyanda.dhlamini/Projects/client_secrets.json'
 
         Returns:
-            credentials - Google Service Account credentials object of type:
-               oauth2client.service_account.ServiceAccountCredentials
+        ----------
+            credentials - oauth2client.service_account.ServiceAccountCredentials
+                Google Service Account credentials object.
+               
         """
+        # Check if provided string contains the phrase '.json'
         assert '.json' in service_account_json_filename, 'Ensure that your service account filename is a json file.'
 
         # create credenntials used to access google services.
@@ -59,16 +59,21 @@ class GoogleDrive(object):
         Upload a file to a google drive folder.
 
         Parameters:
-            path - The full/absolute string path to a file.
-                E.g: '/Users/luyanda.dhlamini/Projects/Customer Maturity Model/2021_02_07_customer_classification_1.csv'
-            credentials - Google Service Account credentials object of type:
-               oauth2client.service_account.ServiceAccountCredentials. Default: None
-            parent_id - The item used to identify which folder to place a file in. Default: None.
+        ----------
+            path - str
+                The full/absolute string path to a file.
+                E.g: '/Users/luyanda.dhlamini/Projects/Folder/2021_02_07_customer_classification_1.csv'
+            credentials - oauth2client.service_account.ServiceAccountCredentials. Default: None
+                Google Service Account credentials object.
+            parent_id - str, None Default: None.
+                The item used to identify which folder to place a file in.
+                E.g: '1czCX8xlhkPyxu00000UbEqncVOPX0000'
                 The root / home Drive folder is used if parent_id = None
-                E.g: 'https://drive.google.com/drive/folders/1czCX8xlhkPyxu00000UbEqncVOPX0000'
 
         Returns:
-            file_id_dict - a dictionary with the id of the uploaded file.
+        ----------
+            file_id_dict - dict
+                A dictionary with the id of the uploaded file.
         """
         if self.credentials is not None:
             credentials = self.credentials
@@ -95,15 +100,18 @@ class GoogleDrive(object):
     def list_files_in_google_drive(self, credentials=None):
         """
         List files that are available to a google drive service account.
-        NB: The files shown are files that are available TO THE SERVICE ACCOUNT and not necessarily those of the person
-        running this code.
+        NB: The files shown are files that are available TO THE SERVICE ACCOUNT and not necessarily those of the person running this code.
 
         Parameters:
-            credentials - Google Service Account credentials object of type:
-               oauth2client.service_account.ServiceAccountCredentials. Default: None
+        ----------
+        credentials - oauth2client.service_account.ServiceAccountCredentials. Default: None
+            Google Service Account credentials object.
+               
 
         Returns:
-            item_dict - A dictionary with a google drive acount's file details.
+        ----------
+        item_dict - dict
+            A dictionary with a google drive acount's file details.
         """
         if self.credentials is not None:
             credentials = self.credentials
@@ -127,15 +135,22 @@ class GoogleDrive(object):
         Share a google drive file with email address accounts.
         See link below for available role options:
             https://developers.google.com/drive/api/v3/ref-roles
+            
         Parameters:
-            file_id - A string unique identifier to a google drive file.
-            emails - A list of email addresses to share a file with.
-            credentials - Google Service Account credentials object of type:
-               oauth2client.service_account.ServiceAccountCredentials. Default: None
-            role - The user permissions type to assign to a user with access to a file. Default: 'writer'.
+        ----------
+        file_id - str
+            A string unique identifier to a google drive file.
+        emails - list
+            A list of email addresses to share a file with.
+        credentials - oauth2client.service_account.ServiceAccountCredentials. Default: None
+            Google Service Account credentials object of type:   
+        role - str
+            The user permissions type to assign to a user with access to a file. Default: 'writer'.
 
         Returns:
-            results - A dictionary with the results of sharing files with user email addresses. 
+        ----------
+        results - dict
+            A dictionary with the results of sharing files with user email addresses. 
         """
         def callback(request_id, response, exception):
             if exception:
@@ -165,90 +180,3 @@ class GoogleDrive(object):
             results['Role'].append(role)
 
         return results
-
-
-
-
-
-
-
-
-
-
-
-# Example
-# Here we create & upload a text file to the service acount's default Drive folder
-
-
-
-
-
-# Create a file path to the current directory
-
-
-if __name__ == "__main__":
-    # This is an example of how to use this package.
-    
-    # Find the path that this script is running from.
-    file_path = os.path.abspath('.') + '/'
-    print('file_path:',file_path)
-
-    # Instantiate the GoogleDrive class
-    gdrive = GoogleDrivePython()
-
-    # Store the name of the service account json file in a variable. 
-    # Replace the name below with your service account's filename
-    service_account_name = 'client_secrets.json'
-
-    # Add the service account name to your current directory path.
-    service_account_name_full_path = file_path + service_account_name
-    print("service_account_name:", service_account_name_full_path)
-
-    # Create credentials using the create_credentials function
-    credentials = gdrive.create_credentials(service_account_json_filename = service_account_name_full_path)
-
-    # Overwrite the class's default credentials with the newly created credentials.
-    gdrive.credentials = credentials
-
-    # The code below would be used if we wanted to upload the file to an exsting google drive folder.
-    # parent_folder_id = '1czCX8xlhkPyxuDl3gnUbEqncVO000000'
-    # parent_folder_url = 'https://drive.google.com/drive/folders/{}'.format(parent_folder_id)
-    # print(parent_folder_url)
-
-    # Create & save a text file into the local directory
-    test_file = "test_file.txt"
-    f = open(test_file, "w")
-    f.write("Test Content")
-    f.close()
-
-    # Add the text file above to the current directory's path.
-    file_to_upload = test_file
-    file_to_upload_full_path = file_path + file_to_upload
-    print('File to upload:', file_to_upload_full_path)
-
-    # Upload the text file created above to google drive
-    # Storing it's file_id in a variable
-    file_id_dict = gdrive.upload_file_to_google_drive(path=file_to_upload_full_path)
-
-    # View the returned file id info.
-    print(file_id_dict)
-
-    # Get the id from the newly created file dictionary object
-    file_id = file_id_dict['id']
-
-    # Write down the email address(es) to share the file with in a list.
-    email_list = ['johnsmith@gmail.com', 'luyandedlamini@gmail.com', 'rajarsheem@gmail.com']
-
-    # Share the file with the email address list.
-    share_results = gdrive.share_google_drive_file(file_id=file_id, emails=email_list)
-    print(share_results)
-
-    # Get all files & folders available to the service account into a dictionary.
-    all_files_dict = gdrive.list_files_in_google_drive()
-
-    # Print & view the available file, folder names and ids.
-    # The newly created text file should also appear in the output.
-    print(all_files_dict)
-
-    # You may use the ids of any of the files/ folders for additional operations.
-
