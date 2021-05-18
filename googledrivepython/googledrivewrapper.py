@@ -6,7 +6,6 @@ from googleapiclient.http import MediaFileUpload, MediaIoBaseDownload
 from mimetypes import MimeTypes
 
 import os
-import pandas as pd
 
 class GoogleDrive(object):
     """
