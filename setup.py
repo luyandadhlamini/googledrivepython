@@ -4,7 +4,6 @@ setup(
   name = 'googledrivepython',         
   packages = ['googledrivepython'],   
   version = version,    
-  long_description_content_type = 'text/markdown',
   license='MIT',        
   description = 'A python Google Drive API v3 wrapper',   
   author = 'Luyanda Dhlamini',                   
@@ -27,13 +26,6 @@ setup(
     'Programming Language :: Python :: 3.8',
     'Programming Language :: Python :: 3.9',
   ],
-    long_description = """# googledrivepython
-A python Google Drive API v3 wrapper that enables:
-    
-* Uploading of files to Google Drive
-
-* Listing of all files & folders available to a service account.
-
-* Sharing of files with a list of email addresses""",
-    
+  long_description = 'A python Google Drive API v3 wrapper that allows for uploading, listing & sharing of Google Drive files.',
+  long_description_content_type = 'text/markdown',    
 )
